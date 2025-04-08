@@ -1,0 +1,204 @@
+
+4. Create cursor for the Employee Table and extract the values from te table.Declare the variable open the cursor and extract the value, close the cursor
+
+what is cursors in dbms
+In a database management system (DBMS), a cursor is a temporary workspace that allows traversal and manipulation of records in a result set one at a time. Think of it like a pointer that moves row by row through a query result.
+
+Why use cursors?
+When you need to process data row by row rather than all at once.
+
+Useful for performing complex operations that require iteration over result sets.
+
+Helps execute procedural logic in databases like PL/SQL or T-SQL.
+
+Types of Cursors:
+Implicit Cursors: Automatically created by SQL when executing queries (like SELECT).
+
+Explicit Cursors: Manually declared and controlled by the user in procedural code.
+
+Basic Explicit Cursor Operations:
+Declare – Define the cursor with a SQL query.
+
+Open – Allocate memory and load the result set.
+
+Fetch – Retrieve data row by row.
+
+Close – Release the cursor resources.
+
+
+
+<-------------------------------------------------------------------------->
+
+Table Employee(Eid,Ename , Age ,Salary)  ---> table 
+
+
+
+
+CREATE TABLE EmployeeA51D (
+    Eid INT PRIMARY KEY,
+    Ename VARCHAR(20),
+    Age INT,
+    Salary INT
+);
+
+INSERT INTO EmployeeA51D (Eid, Ename, Age, Salary) VALUES
+(201, 'Raj', 29, 55000),
+(202, 'Priya', 26, 48000),
+(203, 'Amit', 32, 62000),
+(204, 'Neha', 27, 53000);
+
+
+
+
+
+
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE extract_employee_data1()
+BEGIN
+    DECLARE v_e_id INT;
+    DECLARE v_e_name VARCHAR(20);
+    DECLARE v_age INT;
+    DECLARE v_salary INT;
+    DECLARE done INT DEFAULT FALSE;
+
+    DECLARE emp_cursor CURSOR FOR SELECT Eid, Ename, Age, Salary FROM EmployeeA51D;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN emp_cursor;
+
+    read_loop: LOOP
+        FETCH emp_cursor INTO v_e_id, v_e_name, v_age, v_salary;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+
+        SELECT CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary);
+    END LOOP;
+
+    CLOSE emp_cursor;
+
+END //
+
+DELIMITER ;
+
+CALL extract_employee_data1();
+
+
+
+<----------------------------------->
+
+
+output -------->
+
+
+mysql> CALL extract_employee_data3();
++----------------------------------------------------------------------------------------------------------+
+| CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary) |
++----------------------------------------------------------------------------------------------------------+
+| Employee_id: 201, Employee_name: Raj, Age: 29, Salary: 55000                                             |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
++----------------------------------------------------------------------------------------------------------+
+| CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary) |
++----------------------------------------------------------------------------------------------------------+
+| Employee_id: 202, Employee_name: Priya, Age: 26, Salary: 48000                                           |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
++----------------------------------------------------------------------------------------------------------+
+| CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary) |
++----------------------------------------------------------------------------------------------------------+
+| Employee_id: 203, Employee_name: Amit, Age: 32, Salary: 62000                                            |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
++----------------------------------------------------------------------------------------------------------+
+| CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary) |
++----------------------------------------------------------------------------------------------------------+
+| Employee_id: 204, Employee_name: Neha, Age: 27, Salary: 53000                                            |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+
+
+Now to select a employee having salary greater than 50000
+
+
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE extract_high_salary_employee()
+BEGIN
+    DECLARE v_e_id INT;
+    DECLARE v_e_name VARCHAR(20);
+    DECLARE v_age INT;
+    DECLARE v_salary INT;
+    DECLARE done INT DEFAULT FALSE;
+
+    DECLARE emp_cursor CURSOR FOR 
+    SELECT Eid, Ename, Age, Salary FROM EmployeeA51D WHERE Salary > 50000;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    OPEN emp_cursor;
+
+    read_loop: LOOP
+        FETCH emp_cursor INTO v_e_id, v_e_name, v_age, v_salary;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+
+        SELECT CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary);
+    END LOOP;
+
+    CLOSE emp_cursor;
+
+END //
+
+DELIMITER ;
+
+CALL extract_high_salary_employee();
+
+
+
+
+output --->
+
+mysql> CALL extract_high_salary_employee();
++----------------------------------------------------------------------------------------------------------+
+| CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary) |
++----------------------------------------------------------------------------------------------------------+
+| Employee_id: 201, Employee_name: Raj, Age: 29, Salary: 55000                                             |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
++----------------------------------------------------------------------------------------------------------+
+| CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary) |
++----------------------------------------------------------------------------------------------------------+
+| Employee_id: 203, Employee_name: Amit, Age: 32, Salary: 62000                                            |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
++----------------------------------------------------------------------------------------------------------+
+| CONCAT('Employee_id: ', v_e_id, ', Employee_name: ', v_e_name, ', Age: ', v_age, ', Salary: ', v_salary) |
++----------------------------------------------------------------------------------------------------------+
+| Employee_id: 204, Employee_name: Neha, Age: 27, Salary: 53000                                            |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+hatom.com

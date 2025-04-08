@@ -1,0 +1,163 @@
+'For Largets use BHI'
+
+  AREA large, DATA, READONLY
+	EXPORT __Vectors
+__Vectors
+    DCD 0x20001000
+    DCD Reset_Handler
+	AREA mycode, CODE, READONLY
+    EXPORT Reset_Handler
+ENTRY
+Reset_Handler
+	MOV R5,#6	;r5 =6,cmp count
+	LDR R1,=VALUE	;r1 =0x00000038;memory location address
+	LDR R2,[R1]	;r2=0x03
+	ADD R1,R1,#4	;r1=0x0000003C
+LOOP LDR R4,[R1]	;r4=02;05
+	ADD R1,R1,#4	;r1=0x00000040
+	CMP R2,R4	;larger
+	BHI LOOP1	;r2 =largest
+	MOV R2,R4	;r2=05
+LOOP1 SUB R5,R5,#1	;r5=5,4,3,2,1,0
+	CMP R5,#0	;r5==0
+	BNE LOOP	
+	LDR R4,=RESULT	;r6
+	STR R2,[R4]
+	NOP
+Here B Here
+	AREA mydata1, DATA, READONLY
+VALUE DCD 0x03
+	  DCD 0x02	;0x38
+	  DCD 0x05	;0x3C
+	  DCD 0x04	;0x40
+	  DCD 0x01	;0x44
+	  DCD 0x09	;0x48
+	  DCD 0x07	;0x50
+		;0x54
+	AREA mydata2, DATA, READWRITE
+RESULT DCD 0x0
+	  END
+
+
+
+'FOR SAME CODE USE BLS FOR SMALLEST ELEMENT' (INSTEAD OF BHI)
+
+
+
+ANALYSIS BLS
+
+
+
+
+### Initial State (Before Loop Begins):
+- **Registers**:
+  - `R5 = 6` (loop counter, number of elements in the `VALUE` array).
+  - `R1 = 0x00000038` (points to the first element of the `VALUE` array).
+  - `R2 = 0x03` (initialized to the first element of the array, the current minimum).
+  - `R4 = Undefined` (register to hold the current value being loaded).
+
+- **Memory**:
+  - `VALUE = {0x03, 0x02, 0x05, 0x04, 0x01, 0x09, 0x07}`.
+  - `RESULT = 0x0`.
+
+---
+
+### Iteration 1:
+1. **Instruction: `LDR R4,[R1]`**
+   - **R1 = 0x00000038**, loads `R4 = 0x03` (first element of `VALUE`).
+2. **Instruction: `ADD R1,R1,#4`**
+   - **R1 = 0x0000003C**, now points to the second element.
+3. **Instruction: `CMP R2,R4`**
+   - **R2 = 0x03**, **R4 = 0x03**; comparison indicates equal.
+4. **Instruction: `BLS LOOP1`**
+   - Branch taken because `R4 <= R2`.
+5. **Instruction: `SUB R5,R5,#1`**
+   - **R5 = 5** (decrement loop counter).
+
+---
+
+### Iteration 2:
+1. **Instruction: `LDR R4,[R1]`**
+   - **R1 = 0x0000003C**, loads `R4 = 0x02` (second element of `VALUE`).
+2. **Instruction: `ADD R1,R1,#4`**
+   - **R1 = 0x00000040**, now points to the third element.
+3. **Instruction: `CMP R2,R4`**
+   - **R2 = 0x03**, **R4 = 0x02**; comparison indicates `R4 < R2`.
+4. **Instruction: `MOV R2,R4`**
+   - **R2 = 0x02** (update current minimum).
+5. **Instruction: `SUB R5,R5,#1`**
+   - **R5 = 4** (decrement loop counter).
+
+---
+
+### Iteration 3:
+1. **Instruction: `LDR R4,[R1]`**
+   - **R1 = 0x00000040**, loads `R4 = 0x05` (third element of `VALUE`).
+2. **Instruction: `ADD R1,R1,#4`**
+   - **R1 = 0x00000044**, now points to the fourth element.
+3. **Instruction: `CMP R2,R4`**
+   - **R2 = 0x02**, **R4 = 0x05**; comparison indicates `R4 > R2`.
+4. **Instruction: `BLS LOOP1`**
+   - Branch taken because `R4 > R2`.
+5. **Instruction: `SUB R5,R5,#1`**
+   - **R5 = 3** (decrement loop counter).
+
+---
+
+### Iteration 4:
+1. **Instruction: `LDR R4,[R1]`**
+   - **R1 = 0x00000044**, loads `R4 = 0x04` (fourth element of `VALUE`).
+2. **Instruction: `ADD R1,R1,#4`**
+   - **R1 = 0x00000048**, now points to the fifth element.
+3. **Instruction: `CMP R2,R4`**
+   - **R2 = 0x02**, **R4 = 0x04**; comparison indicates `R4 > R2`.
+4. **Instruction: `BLS LOOP1`**
+   - Branch taken because `R4 > R2`.
+5. **Instruction: `SUB R5,R5,#1`**
+   - **R5 = 2** (decrement loop counter).
+
+---
+
+### Iteration 5:
+1. **Instruction: `LDR R4,[R1]`**
+   - **R1 = 0x00000048**, loads `R4 = 0x01` (fifth element of `VALUE`).
+2. **Instruction: `ADD R1,R1,#4`**
+   - **R1 = 0x0000004C**, now points to the sixth element.
+3. **Instruction: `CMP R2,R4`**
+   - **R2 = 0x02**, **R4 = 0x01**; comparison indicates `R4 < R2`.
+4. **Instruction: `MOV R2,R4`**
+   - **R2 = 0x01** (update current minimum).
+5. **Instruction: `SUB R5,R5,#1`**
+   - **R5 = 1** (decrement loop counter).
+
+---
+
+### Iteration 6:
+1. **Instruction: `LDR R4,[R1]`**
+   - **R1 = 0x0000004C**, loads `R4 = 0x09` (sixth element of `VALUE`).
+2. **Instruction: `ADD R1,R1,#4`**
+   - **R1 = 0x00000050**, now points to the seventh element.
+3. **Instruction: `CMP R2,R4`**
+   - **R2 = 0x01**, **R4 = 0x09**; comparison indicates `R4 > R2`.
+4. **Instruction: `BLS LOOP1`**
+   - Branch taken because `R4 > R2`.
+5. **Instruction: `SUB R5,R5,#1`**
+   - **R5 = 0** (decrement loop counter, ends loop).
+
+---
+
+### Final State (After the Loop Ends):
+- **Registers**:
+  - `R1 = 0x00000050` (points beyond the last element of `VALUE`).
+  - `R2 = 0x01` (smallest value found).
+  - `R4 = 0x09` (last value processed).
+  - `R5 = 0` (loop counter exhausted).
+
+- **Memory**:
+  - `RESULT = 0x01` (smallest value stored).
+
+
+
+NOTE: 
+If ypu want user input just change the code block from read to readWrite in the code 
+and go to that address and type in the values in for every 4 address

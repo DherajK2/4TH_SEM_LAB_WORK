@@ -1,0 +1,168 @@
+
+Aggreate Function--->  Return a single value from that particular Attributes
+MAX,MIN,AVG,SUM,COUNT ----> Aggregate Function
+
+group by,having,order by---> Clauses used with the Aggreate
+
+
+Always Aggregate Function will be written in the 'Select statement' 
+
+
+Employee(Eno(P_k),Ename,Salary,Hiredate,Job,Dnum(F_k)   ---> 2
+Dept(Dnum(p_k),Dname,Location) ---> 1
+Project(P_No(p_k),pname,Dnum(F_k))  ---> 3
+Workon(Eno(F_K),P_no(f_k),Hours) -->4
+
+
+p_k refers to primary key
+f_k refers to Foriegn key
+and number ---> is indicate do that first if it is one then do FIRST 
+
+
+
+-- 1. Department table
+CREATE TABLE Dept (
+    Dnum INT PRIMARY KEY,
+    Dname VARCHAR(50),
+    Location VARCHAR(100)
+);
+
+-- 2. Employee table
+CREATE TABLE Employee (
+    Eno INT PRIMARY KEY,
+    Ename VARCHAR(50),
+    Salary DECIMAL(10, 2),
+    Hiredate DATE,
+    Job VARCHAR(50),
+    Dnum INT,
+    FOREIGN KEY (Dnum) REFERENCES Dept(Dnum)
+);
+
+-- 3. Project table
+CREATE TABLE Project (
+    P_No INT PRIMARY KEY,
+    pname VARCHAR(50),
+    Dnum INT,
+    FOREIGN KEY (Dnum) REFERENCES Dept(Dnum)
+);
+
+-- 4. Workon table
+CREATE TABLE Workon (
+    Eno INT,
+    P_No INT,
+    Hours DECIMAL(5, 2),
+    PRIMARY KEY (Eno, P_No),
+    FOREIGN KEY (Eno) REFERENCES Employee(Eno),
+    FOREIGN KEY (P_No) REFERENCES Project(P_No)
+);
+
+<<<---------------------------------------------------------------------------------------->> Values I want to insert
+
+-- 1. Dept_51 table
+INSERT INTO Dept_51 (Dnum, Dname, Location)
+VALUES
+(1, 'HR', 'New York'),
+(2, 'IT', 'San Francisco'),
+(3, 'Sales', 'Chicago'),
+(4, 'Finance', 'Los Angeles');
+
+-- 2. Employee_51 table
+INSERT INTO Employee_51 (Eno, Ename, Salary, Hiredate, Job, Dnum)
+VALUES
+(101, 'Alice', 50000.00, '2020-01-15', 'Manager', 1),
+(102, 'Bob', 45000.00, '2021-03-22', 'Developer', 2),
+(103, 'Charlie', 47000.00, '2019-07-11', 'Sales Rep', 3),
+(104, 'David', 55000.00, '2022-05-30', 'Accountant', 4);
+
+-- 3. Project_51 table
+INSERT INTO Project_51 (P_No, pname, Dnum)
+VALUES
+(1001, 'Project Alpha', 1),
+(1002, 'Project Beta', 2),
+(1003, 'Project Gamma', 3),
+(1004, 'Project Delta', 4);
+
+-- 4. Workon_51 table
+INSERT INTO Workon_51 (Eno, P_No, Hours)
+VALUES
+(101, 1001, 40.0),
+(102, 1002, 35.0),
+(103, 1003, 38.0),
+(104, 1004, 42.0);
+
+
+
+
+<------------------------------------------------>
+
+Output as Employee Deatil(only name and num ) along with the Depatrmnt (name , dept_no)  using object creation
+
+
+
+SELECT e.*
+FROM Employee_51 e
+JOIN Dept_51 d ON e.Dnum = d.Dnum
+WHERE e.Dnum = 2;
+
+
+
+
+Now display Employee all information Working for Particular Department Name
+
+SELECT e.*
+FROM Employee_51 e
+JOIN Dept_51 d ON e.Dnum = d.Dnum
+WHERE d.Dname = 'IT';
+
+
+aLL EMPLOYEE WORKING IN A PARTICULAR LOCATION
+
+
+SELECT e.*
+FROM Employee_51 e
+JOIN Dept_51 d ON e.Dnum = d.Dnum
+WHERE d.Location = 'Bangalore';
+
+
+
+iNCREASE SALARY FOR A PARTICULAR DEPARTMENT MEMBERS BY INCREASING BY 10% AND DISPLAY
+
+
+UPDATE Employee_51 e
+JOIN Dept_51 d ON e.Dnum = d.Dnum
+SET e.Salary = e.Salary * 1.10
+WHERE d.Dname = 'IT';
+
+
+SELECT e.Ename, e.Eno, e.Salary, d.Dname
+FROM Employee_51 e
+JOIN Dept_51 d ON e.Dnum = d.Dnum
+WHERE d.Dname = 'IT';
+
+
+
+
+dISPLAY CURRENT DATE
+
+SELECT CURDATE();
+
+
+
+
+uSE AGGREAGTE FUNCTION FOR EMPLOYEE MIN MAX SALARY AND AVG SALARY
+
+SELECT 
+    MIN(Salary) AS Min_Salary,
+    MAX(Salary) AS Max_Salary,
+    AVG(Salary) AS Avg_Salary
+FROM Employee_51;
+
+
+
+
+dISPLAY EMPLOYEE INFO WHO IS GETTING MAXIMUM SALARY FROM DEPT_NO
+
+SELECT e.*
+FROM Employee_51 e
+WHERE e.Dnum = 2
+AND e.Salary = (SELECT MAX(Salary) FROM Employee_51 WHERE Dnum = 2);

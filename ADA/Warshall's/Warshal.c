@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-int n, a[10][10], p[10][10];
+int n;
 
-void path() {
+void path(int n, int a[n][n], int p[n][n]) {
     int i, j, k;
 
     // Initialize the path matrix to be the same as the adjacency matrix
@@ -16,7 +16,6 @@ void path() {
     for (k = 0; k < n; k++) {
         for (i = 0; i < n; i++) {
             for (j = 0; j < n; j++) {
-                // If there's a path from i to k and from k to j, then there's a path from i to j
                 if (p[i][k] == 1 && p[k][j] == 1) {
                     p[i][j] = 1;
                 }
@@ -25,12 +24,15 @@ void path() {
     }
 }
 
-void main() {
+int main() {
     int i, j;
 
     // Input the number of nodes
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
+
+    // Declare variable-length arrays based on user input
+    int a[n][n], p[n][n];
 
     // Input the adjacency matrix
     printf("\nEnter the adjacency matrix:\n");
@@ -41,14 +43,16 @@ void main() {
     }
 
     // Calculate the path matrix using the transitive closure algorithm
-    path();
+    path(n, a, p);
 
     // Display the path matrix
-    printf("\nThe path matrix is shown below:\n");
+    printf("\nThe Transitive Closure Matrix :\n");
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
             printf("%d ", p[i][j]);
         }
         printf("\n");
     }
+
+    return 0;
 }

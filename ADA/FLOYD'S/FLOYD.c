@@ -2,7 +2,7 @@
 
 int min(int a, int b);
 
-void floyds(int p[10][10], int n) {
+void floyds(int n, int p[n + 1][n + 1]) {
     int i, j, k;
 
     // Apply Floyd's algorithm
@@ -10,7 +10,7 @@ void floyds(int p[10][10], int n) {
         for (i = 1; i <= n; i++) {
             for (j = 1; j <= n; j++) {
                 if (i == j) {
-                    p[i][j] = 0;  // No need to go anywhere if it's the same vertex
+                    p[i][j] = 0;
                 } else {
                     p[i][j] = min(p[i][j], p[i][k] + p[k][j]);
                 }
@@ -23,22 +23,24 @@ int min(int a, int b) {
     return (a < b) ? a : b;
 }
 
-void main() {
-    int p[10][10], w, n, e = 0, u, v, i, j;
+int main() {
+    int w, n, e = 0, u, v, i, j;
 
     // Input number of vertices
     printf("Enter the number of vertices: ");
     scanf("%d", &n);
 
-    // Input the adjacency matrix and calculate the number of edges
-    printf("\nEnter the adjacency matrix:\n");
+    // VLA declared based on user input
+    int p[n + 1][n + 1];
+
+    // Input the cost adjacency matrix and calculate the number of edges
+    printf("\nEnter the cost adjacency matrix:\n");
     for (i = 1; i <= n; i++) {
         for (j = 1; j <= n; j++) {
             scanf("%d", &p[i][j]);
 
-            // Count non-zero elements (edges)
-            if (i != j && p[i][j] != 999) { // Exclude the diagonal and 999 (no direct edge)
-                e++;  // Increase edge count
+            if (i != j && p[i][j] != 999) {
+                e++;
             }
         }
     }
@@ -55,8 +57,8 @@ void main() {
         printf("\n");
     }
 
-    // Perform Floyd's algorithm to find the shortest paths
-    floyds(p, n);
+    // Perform Floyd's algorithm
+    floyds(n, p);
 
     // Display the transitive closure matrix
     printf("\nTransitive closure:\n");
@@ -76,4 +78,6 @@ void main() {
             }
         }
     }
+
+    return 0;
 }

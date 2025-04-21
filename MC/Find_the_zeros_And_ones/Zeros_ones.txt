@@ -28,3 +28,86 @@ L2	SUBS R1,R1,#1
 HERE B HERE
 VALUE DCD 0x11111111,0xAA55AA55
 	END
+
+
+----------analysis----------
+
+
+First Iteration (Processing 0x11111111):
+Initialize values:
+
+R0 = 0x11111111
+
+R1 = 32 (32 bits to process)
+
+First bit check:
+
+Rotate right: R0 = ROR #1 → R0 = 0x88888888
+
+Check bit: Bit is 1, set the carry flag.
+
+Increment ones counter: R3 = R3 + 1 → R3 = 1.
+
+Second bit check:
+
+Rotate right: R0 = ROR #1 → R0 = 0x44444444
+
+Check bit: Bit is 0, clear the carry flag.
+
+Increment zeros counter: R2 = R2 + 1 → R2 = 1.
+
+Repeat for all 32 bits:
+
+The program continues rotating the value and checking each bit.
+
+After all 32 bits, R3 = 2 (ones) and R2 = 30 (zeros).
+
+After the first value:
+
+R7 = R7 - 1 → R7 = 1 (decrease data counter).
+
+The program will go to the second value.
+
+Second Iteration (Processing 0xAA55AA55):
+Load next value:
+
+R0 = 0xAA55AA55
+
+R1 = 32 (32 bits to process)
+
+First bit check:
+
+Rotate right: R0 = ROR #1 → R0 = 0xD552D552
+
+Check bit: Bit is 1, set the carry flag.
+
+Increment ones counter: R3 = R3 + 1 → R3 = 3.
+
+Second bit check:
+
+Rotate right: R0 = ROR #1 → R0 = 0x6A2D6A2D
+
+Check bit: Bit is 0, clear the carry flag.
+
+Increment zeros counter: R2 = R2 + 1 → R2 = 2.
+
+Repeat for all 32 bits:
+
+The program continues rotating the value and checking each bit.
+
+After all 32 bits, R3 = 16 (ones) and R2 = 16 (zeros).
+
+After the second value:
+
+R7 = R7 - 1 → R7 = 0 (decrease data counter).
+
+Since R7 == 0, the program exits the loop.
+
+Final Results:
+After both iterations, the final counts are:
+
+R2 = 46 (zeros).
+
+R3 = 18 (ones).
+
+The program then enters an infinite loop (HERE B HERE).

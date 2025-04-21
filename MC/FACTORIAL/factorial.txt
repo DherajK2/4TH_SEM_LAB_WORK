@@ -1,0 +1,21 @@
+	AREA mudata,data,readonly
+		EXPORT __Vectors
+__Vectors
+	DCD 0x20000000
+	DCD Reset_Handler
+	AREA mycode,code,readonly
+	EXPORT Reset_Handler
+ENTRY
+Reset_Handler
+	MOV R0,#7
+	MOV R1,R0
+LOOP
+	SUBS R1,R1,#1
+	CMP R1,#1
+	BEQ LOOP1
+	MUL R3,R0,R1
+	MOV R0,R3
+	BNE LOOP
+LOOP1 NOP
+HERE B HERE
+	END

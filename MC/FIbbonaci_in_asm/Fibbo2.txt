@@ -1,0 +1,38 @@
+	AREA mydata,data, READONLY
+		EXPORT __Vectors
+
+__Vectors
+	DCD 0x20000000
+	DCD Reset_Handler
+	AREA mycode , CODE , READONLY
+	EXPORT Reset_Handler
+ENTRY
+Reset_Handler
+	MOV R1, #1        ; R1 = 1 (Second Fibbonaci Number)
+	LDR R2, =Value    ; R2 = address of output array
+	LDR R3, =NUM1     ; R3 = address of num1
+	LDRB R6, [R3]     ; Load the number of Fibbonacci number generated
+	
+	STRB R1, [R2] ,#1  ;
+	MOV R3, #0         ;
+	MOV R4, #0         ;
+	MOV R5, #1         ;
+	SUB R6, R6 ,#1     ;
+	
+Loop
+	ADD R4, R3, R1        ;
+	STRB R4 , [R2] , #1   ;
+	MOV R3,R1             ;
+	MOV R1, R4            ;
+	ADD R5 , R5, #1       ;
+	CMP R5, R6            ;
+	BLS Loop              ;
+	
+here 
+		B here              ; Infinite loop 
+	
+		AREA DATA1,DATA,READWRITE
+NUM1	DCD 0x0
+Value	SPACE 60
+	
+		END

@@ -2,19 +2,14 @@
 
 #define INF 999
 
-int parent[20];      // To store parent of each node
-int n;               // Number of vertices
-
-// Find the root of the set that node i belongs to
-int find(int i) {
+int find(int parent[], int i) {
     while (parent[i]) {
         i = parent[i];
     }
     return i;
 }
 
-// Union of two sets (if not already connected)
-int uni(int i, int j) {
+int uni(int parent[], int i, int j) {
     if (i != j) {
         parent[j] = i;
         return 1;
@@ -22,8 +17,11 @@ int uni(int i, int j) {
     return 0;
 }
 
-// Kruskal’s algorithm to find MST
-void kruskalMST(int n, int cost[20][20]) {
+void kruskalMST(int n, int cost[n+1][n+1]) {
+    int parent[n+1];  // VLA for parent array
+    for (int i = 0; i <= n; i++)
+        parent[i] = 0;
+
     int ne = 1, mincost = 0;
     int a, b, u, v, min, i, j;
 
@@ -42,10 +40,10 @@ void kruskalMST(int n, int cost[20][20]) {
             }
         }
 
-        u = find(a);
-        v = find(b);
+        u = find(parent, a);
+        v = find(parent, b);
 
-        if (uni(u, v)) {
+        if (uni(parent, u, v)) {
             printf("%d edge (%d,%d) = %d\n", ne++, a, b, min);
             mincost += min;
         }
@@ -57,18 +55,19 @@ void kruskalMST(int n, int cost[20][20]) {
 }
 
 int main() {
-    int cost[20][20];
-    int i, j;
+    int n;
 
     printf("\nEnter the number of vertices: ");
     scanf("%d", &n);
 
+    int cost[n+1][n+1];  // VLA for cost matrix
+
     printf("\nEnter the cost adjacency matrix:\n");
-    for (i = 1; i <= n; i++) {
-        for (j = 1; j <= n; j++) {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
             scanf("%d", &cost[i][j]);
             if (cost[i][j] == 0)
-                cost[i][j] = INF;  // Representing no edge
+                cost[i][j] = INF;
         }
     }
 

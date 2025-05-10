@@ -1,0 +1,177 @@
+✅ 1. What is a Trigger in SQL?
+A trigger is a database object that is automatically executed or fired when certain events occur (INSERT, UPDATE, DELETE) on a table or view.
+
+✅ 2. Create a trigger to log old and new prices of a book when updated, only if change is ≥ 10
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_log_price_change
+AFTER UPDATE ON Book
+FOR EACH ROW
+BEGIN
+    IF ABS(NEW.Price - OLD.Price) >= 10 THEN
+        INSERT INTO PriceChangeLog (BookID, OldPrice, NewPrice, ChangeDate)
+        VALUES (NEW.BookID, OLD.Price, NEW.Price, NOW());
+    END IF;
+END;
+//
+
+DELIMITER ;
+✅ 3. Create a trigger to update total_orders in Customers when a new order is inserted
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_update_total_orders
+AFTER INSERT ON Orders
+FOR EACH ROW
+BEGIN
+    UPDATE Customers
+    SET total_orders = total_orders + 1
+    WHERE customer_id = NEW.customer_id;
+END;
+//
+
+DELIMITER ;
+✅ 4. Create a trigger to decrease total_orders when an order is deleted
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_decrease_total_orders
+AFTER DELETE ON Orders
+FOR EACH ROW
+BEGIN
+    UPDATE Customers
+    SET total_orders = CASE
+        WHEN total_orders > 0 THEN total_orders - 1
+        ELSE 0
+    END
+    WHERE customer_id = OLD.customer_id;
+END;
+//
+
+DELIMITER ;
+✅ 5. Create a trigger to log changes to customer information in an audit table
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_customer_update_log
+AFTER UPDATE ON Customer
+FOR EACH ROW
+BEGIN
+    DECLARE msg TEXT;
+    SET msg = '';
+
+    IF OLD.Name != NEW.Name THEN
+        SET msg = CONCAT(msg, 'Name changed from "', OLD.Name, '" to "', NEW.Name, '". ');
+    END IF;
+    IF OLD.Email != NEW.Email THEN
+        SET msg = CONCAT(msg, 'Email changed from "', OLD.Email, '" to "', NEW.Email, '". ');
+    END IF;
+
+    INSERT INTO CustomerAudit (CustomerID, ChangeDetails, ChangeDate)
+    VALUES (NEW.CustomerID, msg, NOW());
+END;
+//
+
+DELIMITER ;
+✅ 6. Prevent inserting a product with a negative price
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_prevent_negative_price
+BEFORE INSERT ON Product
+FOR EACH ROW
+BEGIN
+    IF NEW.Price < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Product price cannot be negative.';
+    END IF;
+END;
+//
+
+DELIMITER ;
+✅ 7. Prevent updating stock to a negative number
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_prevent_negative_stock
+BEFORE UPDATE ON Inventory
+FOR EACH ROW
+BEGIN
+    IF NEW.stock < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock cannot be negative.';
+    END IF;
+END;
+//
+
+DELIMITER ;
+✅ 8. Log deletion of orders into a backup table
+sql
+Copy
+Edit
+CREATE TABLE DeletedOrdersBackup (
+    order_id INT,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10,2),
+    deleted_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+DELIMITER //
+
+CREATE TRIGGER trg_backup_deleted_orders
+BEFORE DELETE ON Orders
+FOR EACH ROW
+BEGIN
+    INSERT INTO DeletedOrdersBackup (order_id, customer_id, order_date, total_amount)
+    VALUES (OLD.order_id, OLD.customer_id, OLD.order_date, OLD.total_amount);
+END;
+//
+
+DELIMITER ;
+✅ 9. Automatically set registration date during insert
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_set_registration_date
+BEFORE INSERT ON Users
+FOR EACH ROW
+BEGIN
+    SET NEW.registration_date = NOW();
+END;
+//
+
+DELIMITER ;
+✅ 10. Restrict deletion of a customer if they have existing orders
+sql
+Copy
+Edit
+DELIMITER //
+
+CREATE TRIGGER trg_prevent_customer_deletion
+BEFORE DELETE ON Customers
+FOR EACH ROW
+BEGIN
+    IF EXISTS (SELECT 1 FROM Orders WHERE customer_id = OLD.customer_id) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Cannot delete customer with existing orders.';
+    END IF;
+END;
+//
+
+DELIMITER ;

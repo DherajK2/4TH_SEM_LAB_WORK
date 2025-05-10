@@ -1,0 +1,48 @@
+Explain different transaction States. Write an SQL command to set
+the transaction isolation level to Read Committed
+
+ChatGPT said:
+Sure! Let's break this into two parts:
+
+✅ 1. Transaction States in SQL
+A transaction is a logical unit of work that must be completed fully or not at all. SQL transactions go through the following states:
+
+State	Description
+Active	The transaction has started and operations are being performed.
+Partially Committed	All statements have been executed, but changes are not yet permanent (waiting for commit).
+Committed	All changes made by the transaction are saved permanently to the database.
+Failed	An error occurs, and the transaction cannot proceed.
+Aborted	The transaction is rolled back (undone) due to failure or a manual rollback.
+
+🔄 Transaction Lifecycle:
+text
+Copy
+Edit
+START TRANSACTION
+     ↓
+ACTIVE → PARTIALLY COMMITTED
+     ↓
+ COMMIT (→ COMMITTED) OR ROLLBACK (→ ABORTED)
+✅ 2. SQL Command to Set Isolation Level to READ COMMITTED
+sql
+Copy
+Edit
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+🧠 What It Means:
+Read Committed ensures a transaction can only read data that has been committed by other transactions.
+
+Prevents dirty reads (i.e., reading uncommitted changes from others).
+
+It's a common default in databases like SQL Server and Oracle.
+
+✅ Example in a Transaction Block:
+sql
+Copy
+Edit
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+START TRANSACTION;
+
+-- Your SQL operations here
+
+COMMIT;

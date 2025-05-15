@@ -32,3 +32,51 @@ Raj 8500
 Nina 10000
 EOF
 ```
+
+### 📁 Contents of employees.txt
+```bash
+John 9500
+Alice 12000
+Raj 8500
+Nina 10000
+```
+
+
+
+
+
+## 📂 Step 2: Create AWK Script
+
+```bash
+cat > gross_salary.awk <<'EOF'
+{
+    name = $1
+    basic = $2
+    if (basic < 10000) {
+        hra = 0.15 * basic
+        da = 0.45 * basic
+    } else {
+        hra = 0.20 * basic
+        da = 0.50 * basic
+    }
+    gross = basic + hra + da
+    printf "%s\tBasic: %.2f\tGross: %.2f\n", name, basic, gross
+}
+EOF
+```
+
+
+## ▶️ Step 3: Run the AWK Script
+```bash
+awk -f gross_salary.awk employees.txt
+```
+
+
+## 📤 Sample Output
+```bash
+John	Basic: 9500.00	Gross: 13300.00
+Alice	Basic: 12000.00	Gross: 20400.00
+Raj	Basic: 8500.00	Gross: 11900.00
+Nina	Basic: 10000.00	Gross: 17000.00
+```
+

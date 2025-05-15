@@ -31,4 +31,4 @@ Alice 12000
 Raj 8500
 Nina 10000
 EOF
-```bash
+```

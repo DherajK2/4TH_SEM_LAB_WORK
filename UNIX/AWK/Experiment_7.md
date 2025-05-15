@@ -1,3 +1,7 @@
+## Write an awk script to compute gross salary of an employee accordingly to rule
+## given below. If basic salary is < 10000 then HRA=15% of basic & DA=45% of
+## basic If basic salary is >=10000 then HRA=20% of basic & DA=50% of basic.
+
 # 🧮 AWK Script: Compute Gross Salary of Employees
 
 ## ✅ Problem Statement

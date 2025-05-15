@@ -1,0 +1,87 @@
+Write an awk script to compute gross salary of an employee accordingly to rule
+given below. If basic salary is < 10000 then HRA=15% of basic & DA=45% of
+basic If basic salary is >=10000 then HRA=20% of basic & DA=50% of basic.
+
+
+Give me content of file commadns all 
+
+ChatGPT said:
+Sure! Let's walk through a complete solution where:
+
+✅ We create a simple file (employees.txt) with employee names and basic salaries.
+
+✅ We write an awk script to calculate Gross Salary based on your rules.
+
+✅ We explain and show the command to run the script.
+
+✅ We keep file content short but effective.
+
+✅ Gross Salary Formula (from your question):
+Basic Salary	HRA	DA
+< 10000	15% of basic	45% of basic
+>= 10000	20% of basic	50% of basic
+
+✅ Step 1: Create the Folder and Data File
+bash
+Copy code
+mkdir -p awk_demo
+cd awk_demo
+
+# Create employees.txt
+cat > employees.txt <<EOF
+John 9500
+Alice 12000
+Raj 8500
+Nina 10000
+EOF
+📄 employees.txt — Sample Input File
+yaml
+Copy code
+John 9500
+Alice 12000
+Raj 8500
+Nina 10000
+Each line contains: <Employee_Name> <Basic_Salary>
+
+✅ Step 2: Write the awk Script
+🔧 Create a file called gross_salary.awk
+bash
+Copy code
+cat > gross_salary.awk <<'EOF'
+{
+    name = $1
+    basic = $2
+    if (basic < 10000) {
+        hra = 0.15 * basic
+        da = 0.45 * basic
+    } else {
+        hra = 0.20 * basic
+        da = 0.50 * basic
+    }
+    gross = basic + hra + da
+    printf "%s\tBasic: %.2f\tGross: %.2f\n", name, basic, gross
+}
+EOF
+✅ Step 3: Run the Script
+bash
+Copy code
+awk -f gross_salary.awk employees.txt
+📤 Output
+yaml
+Copy code
+John	Basic: 9500.00	Gross: 13300.00
+Alice	Basic: 12000.00	Gross: 20400.00
+Raj	Basic: 8500.00	Gross: 11900.00
+Nina	Basic: 10000.00	Gross: 17000.00
+✅ This shows gross salary computed with the correct HRA and DA percentages based on the rules.
+
+✅ Summary
+File	Purpose
+employees.txt	Input file with basic salaries
+gross_salary.awk	AWK script for gross salary
+
+💻 Final Directory Structure
+Copy code
+awk_demo/
+├── employees.txt
+└── gross_salary.awk

@@ -70,3 +70,73 @@ grep -l "test" *.txt
 
 ### Explanation:
 - 'l': Displays only the file names that match the pattern.
+
+
+### (iv) Checking for the Whole Words in a File.
+**Question:**
+Checking for the Whole Words in a File.
+
+**Answer:**
+```bash
+grep -w "test" file2.txt
+
+```
+
+### Explanation:
+- 'w': Matches only whole words.
+
+
+
+### (v) Displaying only the matched pattern
+**Question:**
+Displaying only the matched pattern
+
+**Answer:**
+```bash
+grep -o "test" file2.txt
+
+```
+
+### Explanation:
+- 'o': Displays only the matched parts of the pattern, not the entire line.
+
+### (vi) Search Recursively for a Pattern in the Directory.
+**Question:**
+Search Recursively for a Pattern in the Directory.
+
+**Answer:**
+```bash
+grep -r "Hello"
+
+```
+
+### Explanation:
+- 'o': Recursively searches through the directory.
+
+
+### (vii) Matching the Lines that End with a String
+**Question:**
+Matching the Lines that End with a String
+
+**Answer:**
+```bash
+grep "GREP$" file2.txt
+
+```
+
+### Explanation:
+- 'test$': '$' signifies that the string must appear at the end of the line.
+
+### (viii) Inverting the Pattern Match
+**Question:**
+Inverting the Pattern Match
+
+**Answer:**
+```bash
+grep -v "hello" file1.txt
+
+```
+
+### Explanation:
+- 'o': Inverts the match, showing lines that do not contain the pattern.
+

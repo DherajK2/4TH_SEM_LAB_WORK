@@ -1,3 +1,10 @@
+##Create filename as
+```bash
+vi Postional_parameter.sh
+```
+
+
+
 ```bash 
 #!/bin/bash
 # Positional parameters
@@ -13,3 +20,15 @@ echo "You are $age years old."
 echo "Total arguments passed: $#"
 echo "All arguments: $@"
 ``` 
+
+
+##TO RUN COMMAND
+```bash
+bash Postional_parameter.sh Dheraj K 21
+```
+
+
+## Expected output
+```bash
+Hello
+```

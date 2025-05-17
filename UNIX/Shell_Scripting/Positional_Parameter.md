@@ -1,4 +1,4 @@
-##Create filename as
+### Create filename as
 ```bash
 vi Postional_parameter.sh
 ```
@@ -22,7 +22,7 @@ echo "All arguments: $@"
 ``` 
 
 
-##TO RUN COMMAND
+## TO RUN COMMAND
 ```bash
 bash Postional_parameter.sh Dheraj K 21
 ```

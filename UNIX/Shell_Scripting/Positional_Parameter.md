@@ -31,7 +31,7 @@ If suppose there is more than 3 arguements then line 1 and line 2 will print $1 
 But the 3rd line will be return the number of arguement actually passed
 Also the 4th line will return **ALL The ARGUEMENTS PASSED**
 
-
+```
 ## TO RUN COMMAND
 ```bash
 bash Postional_parameter.sh Dheraj K 21

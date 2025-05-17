@@ -30,5 +30,8 @@ bash Postional_parameter.sh Dheraj K 21
 
 ## Expected output
 ```bash
-Hello
+Hello Dheraj K!
+You are 21 years old.
+Total arguments passed: 3
+All arguments: Dheraj K 21
 ```

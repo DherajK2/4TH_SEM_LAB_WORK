@@ -30,7 +30,7 @@ The `head` command is used to display the first few lines of a file. By default,
 
 ## Problems and Answers:
 
-### (i) Display the First 5 Lines of a File.
+### (i) Display from the first Lines of a File.
 **Question:**
 Display the first 10 lines(DEFAULT) from `sample.txt`.
 

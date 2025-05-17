@@ -18,7 +18,7 @@ Line 12
 ```
 
 
-## What is the `head` Command?
+## What is the `tail` Command?
 
 The tail command in Unix (and Linux) is used to display the last part of a file. By default, it shows the last 10 lines of a file, but this can be adjusted with various options.
 

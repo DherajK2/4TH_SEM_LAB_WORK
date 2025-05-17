@@ -13,7 +13,7 @@ first_name=$1
 last_name=$2
 age=$3
 
-# Output using positional parameters
+#Output using positional parameters
 
 echo "Hello $first_name $last_name!"
 echo "You are $age years old."

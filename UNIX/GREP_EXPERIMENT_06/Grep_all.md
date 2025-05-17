@@ -26,6 +26,31 @@ testing from subdir
 Another Hello
 ```
 
+### Common `grep` Command Options:
+
+- **`grep <pattern> <filename>`**: Searches for the `<pattern>` in the specified `<filename>` and displays the matching lines.
+
+- **`grep -i <pattern> <filename>`**: Performs a case-insensitive search for the `<pattern>` in the specified `<filename>`.
+
+- **`grep -r <pattern> <directory>`**: Searches for the `<pattern>` recursively through all files in the specified directory.
+
+- **`grep -v <pattern> <filename>`**: Displays lines that do **not** match the `<pattern>` in the specified `<filename>`.
+
+- **`grep -c <pattern> <filename>`**: Outputs the count of matching lines, i.e., how many lines in the file contain the `<pattern>`.
+
+- **`grep -l <pattern> <filename>`**: Displays only the names of files that contain the `<pattern>`.
+
+- **`grep -w <pattern> <filename>`**: Matches the whole word `<pattern>`, ensuring it is not part of another word (e.g., `pattern` matches, but `patterns` does not).
+
+- **`grep -o <pattern> <filename>`**: Prints only the portion of the line that matches the `<pattern>`.
+
+- **`grep '<pattern>$' <filename>`**: Matches lines that end with the `<pattern>` (e.g., `'pattern$'` matches lines ending with "pattern").
+
+- **`grep -l -r <pattern> <directory>`**: Recursively searches for `<pattern>` in the directory and displays the names of files containing the pattern.
+
+- **`grep -i -v <pattern> <filename>`**: Performs a case-insensitive search and inverts the match to show lines that do **not** contain the `<pattern>`.
+
+---
 
 ## Problems and Answers:
 

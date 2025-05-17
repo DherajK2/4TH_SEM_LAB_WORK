@@ -23,9 +23,8 @@ Line 12
 The `head` command is used to display the first few lines of a file. By default, `head` will show the first 10 lines of a file. It can also be customized to show a specific number of lines from the beginning of the file using the `-n` option.
 
 ### Common `head` Command Options:
-- `head -n <number>`: Displays the first `<number>` lines of the file.
-- `head -n <number> <file>`: Shows the first `<number>` lines of the specified file.
-- `head -c <bytes>`: Displays the first `<bytes>` bytes of a file.
+- `head <filename>`: Displays the first `<number>` lines of the file.
+- `head -n <number> <filename>`: Shows the first `<number>` lines of the specified file.
 
 ---
 

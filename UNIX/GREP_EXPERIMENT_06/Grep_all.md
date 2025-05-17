@@ -31,11 +31,11 @@ Another Hello
 
 ### (i) Case Insensitive Search, Print n Specific Lines from a File.
 **Question:**
-Perform a case-insensitive search for the word "hello" and print the first 2 matching lines from `file1.txt`.
+Case insensitive search, Print n Specific Lines from a File.
 
 **Answer:**
 ```bash
-grep -i "pattern" file1.txt 
+grep -i "hello" file1.txt | head -n 2
 ```
 
 ### Explanation:
@@ -44,3 +44,29 @@ grep -i "pattern" file1.txt
 - `head -n 2`: Displays the first 2 lines of the output.
 
 
+### (ii) Displaying the Count of Number of Matches
+**Question:**
+Displaying the Count of Number of Matches.
+
+**Answer:**
+```bash
+grep -c "test" file2.txt
+
+```
+
+### Explanation:
+- 'c': Displays the count of matching lines.
+
+
+### (iii) Display the File Names that Matches the Pattern.
+**Question:**
+Display the File Names that Matches the Pattern.
+
+**Answer:**
+```bash
+grep -l "test" *.txt
+
+```
+
+### Explanation:
+- 'l': Displays only the file names that match the pattern.

@@ -22,7 +22,8 @@ Control char:\ox
 Another line
 
 
-leave blank space
+leave blank lines
+
 ```
 
 ## What is the `cat` Command?

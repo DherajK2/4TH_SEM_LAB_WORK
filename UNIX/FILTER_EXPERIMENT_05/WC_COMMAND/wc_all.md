@@ -22,7 +22,7 @@ this is wc
 
 ```
 
-## What is the `head` Command?
+## What is the `wc` Command?
 
 The wc command is used to count lines, words, characters, and more in a file.
 

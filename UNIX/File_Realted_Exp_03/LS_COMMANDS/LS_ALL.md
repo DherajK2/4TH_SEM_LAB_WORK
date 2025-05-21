@@ -93,3 +93,113 @@ Example: `rwxr-xr-x`
 ---
 
 
+
+**Question:**
+ls -r
+Reverses the default sort order.
+**Answer:**
+```bash
+ls -r
+```
+### Output expected:
+```bash
+file3.txt  file2.txt  file1.txt  dir2  dir1
+
+```
+
+**Question:**
+ls -u
+Sorts the files by last access time.
+
+**Answer:**
+```bash
+ls -u
+```
+### Output expected:
+```bash
+dir1		dir2		file1.txt	file2.txt	file3.txt
+```
+
+**Question:**
+ls -n
+Displays long listing format with numeric UID and GID instead of names.
+**Answer:**
+```bash
+ls -n
+```
+### Output expected:
+```bash
+total 0
+drwxr-xr-x  3 501  20  96 May 21 23:06 dir1
+drwxr-xr-x  3 501  20  96 May 21 23:06 dir2
+-rw-r--r--  1 501  20   0 May 21 23:06 file1.txt
+-rw-r--r--  1 501  20   0 May 21 23:06 file2.txt
+-rw-r--r--  1 501  20   0 May 21 23:06 file3.txt
+```
+
+
+**Question:**
+ls -p
+Appends a / to directory names.
+
+**Answer:**
+```bash
+ls -p
+```
+### Output expected:
+```bash
+dir1/		dir2/		file1.txt	file2.txt	file3.txt
+```
+
+**Question:**
+ls -i
+Shows the inode number for each file or directory.
+
+**Answer:**
+```bash
+ls -i
+```
+### Output expected:
+```bash
+26939577 dir1		26939572 file1.txt	26939574 file3.txt
+26939578 dir2		26939573 file2.txt
+```
+
+**Question:**
+ls -R
+Recursively lists all files and directories under the current directory.
+
+**Answer:**
+```bash
+ls -R
+```
+### Output expected:
+```bash
+dir1		dir2		file1.txt	file2.txt	file3.txt
+
+./dir1:
+nested1.txt
+
+./dir2:
+nested2.txt
+```
+
+**Question:**
+ls -1
+To list in a single vertical column
+**Answer:**
+```bash
+ls -1
+```
+### Output expected:
+```bash
+dir1
+dir2
+file1.txt
+file2.txt
+file3.txt
+```
+
+
+
+

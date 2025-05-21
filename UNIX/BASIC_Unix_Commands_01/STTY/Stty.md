@@ -43,6 +43,6 @@ stty
 - Displays the current settings for the terminal, including line discipline, control characters, and more.
 
 
-![Screenshot of the app](./UNIX/BASIC_Unix_Commands_01/SET.png)
+![Screenshot](../SET.png)
 
 

@@ -116,3 +116,19 @@ cal -m 7
 - `cal -m 7`: Displays the 7th month (July) of the current year.
 
 
+### (vii)  Show Previous and Next Few Months
+**Question:**
+Show 2 months before and 2 months after the current month.
+
+
+**Answer:**
+```bash
+cal -B 2 -A 2
+
+```
+
+### Explanation:
+
+- `cal -B 2`: Shows 2 months before the current month.
+- `cal -A 2`: Shows 2 months after the current month.
+- `cal -B 2 -A 2` : Hence print if may is the current month then it will display March, April, May , June, July

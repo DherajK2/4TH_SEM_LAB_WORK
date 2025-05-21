@@ -69,7 +69,7 @@ cp dirA/f* dirB
 - `cp dirA/f* dirB`: This copies all files in DirA that begin with the letter f (such as file1.txt, foo.txt, etc.) into the DirB directory.
 
 
-
+---
 
 
 

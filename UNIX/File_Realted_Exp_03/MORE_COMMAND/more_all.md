@@ -38,6 +38,7 @@ more sample.txt
 
 **Question:**
 more -c sample.txt
+
 Clears the screen before displaying each page (cleaner view).
 **Answer:**
 ```bash
@@ -47,6 +48,7 @@ more -c sample.txt
 
 **Question:**
 more -s sample.txt
+
 Squeezes multiple blank lines into one. Useful when reading messy files.
 
 **Answer:**
@@ -56,6 +58,7 @@ more -s sample.txt
 
 **Question:**
 more +10 sample.txt
+
 Starts viewing from line 10 of the file.
 
 **Answer:**

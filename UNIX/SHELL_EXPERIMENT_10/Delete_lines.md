@@ -54,6 +54,11 @@ bash delete_lines.sh error logfile.txt
 ```
 
 #### Expected Output:
+##### To check :
+```bash
+cat logfile.txt
+```
+
 ```bash
 This is a test line
 No issues here

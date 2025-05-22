@@ -17,6 +17,20 @@ The **`diff`** command compares files line by line and outputs the differences b
 
 ---
 
+## File Contents and Structure
+
+### File Structure
+
+```bash
+~/diff_example/
+├── file1.txt
+├── file2.txt
+└── subdir/
+    ├── file1.txt
+    └── file2.txt
+
+
+
 ## 1. `diff -u`: Unified Output Format
 
 ### Purpose:

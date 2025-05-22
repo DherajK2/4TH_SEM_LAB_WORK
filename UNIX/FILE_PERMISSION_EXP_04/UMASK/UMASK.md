@@ -55,6 +55,7 @@ ls -l
 ### Explanation:
 
 - `umask 000`: 
+
 Directory mydir → 777 permissions (rwxrwxrwx)
 
 File myfile.txt → 666 permissions (rw-rw-rw-)
@@ -74,7 +75,8 @@ ls -l
 
 ### Explanation:
 
-- `umask 011`: 
+- `umask 011`:
+ 
 Directory mydir2 → 766 permissions (rwxrw-rw-)
 
 File myfile2.txt → 666 permissions (rw-rw-rw-)
@@ -95,6 +97,7 @@ ls -l
 ### Explanation:
 
 - `umask 022`: 
+
 Directory mydir3 → 755 permissions (rwxr-xr-x)
 
 File myfile3.txt → 644 permissions (rw-r--r--)

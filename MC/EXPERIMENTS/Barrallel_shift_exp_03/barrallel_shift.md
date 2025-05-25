@@ -1,4 +1,4 @@
-## 2. Develop and simulate ARM ALP for demonstrate the Barrel Shifter operation (LSL, ASR, LSR, ROR)
+## 3. Develop and simulate ARM ALP for demonstrate the Barrel Shifter operation (LSL, ASR, LSR, ROR)
 
 
 ```bash

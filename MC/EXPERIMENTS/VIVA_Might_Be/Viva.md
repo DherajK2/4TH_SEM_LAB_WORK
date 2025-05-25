@@ -87,17 +87,13 @@ CISC uses fewer, more powerful instructions, leading to compact code, better for
 
 ## 8. Microprocessor vs Microcontroller
 
-| Feature                        | Microprocessor (MP)                                          | Microcontroller (MC)                                         |
-|--------------------------------|---------------------------------------------------------------|---------------------------------------------------------------|
-| **Definition**                | Heart of a computer system                                    | Heart of an embedded system                                   |
-
-| **Architecture**            | Von Neumann (shared program & data memory)                    | Harvard (separate program & data memory)                      |
-
-| **Integration**              | Only the processor; requires external components              | Processor + memory + I/O integrated on a single chip          |
-| **Hardware Requirement**     | Needs more external components                                | Needs fewer external components                               |
-| **Cost**                     | Higher due to external parts                                  | Lower as most components are built-in                         |
-| **Power Consumption**        | High (not suitable for battery-powered systems)               | Low (ideal for battery-powered systems)                       |
-| **Applications**             | Used in PCs, laptops                                          | Used in embedded systems like washing machines, MP3 players   |
-| **Examples**                 | Intel 8086, Pentium series                                    | Intel 8051, ARM Cortex-M series                               |
-
----
+| Feature                  | Microprocessor (MP)                                     | Microcontroller (MC)                                      |
+|--------------------------|----------------------------------------------------------|------------------------------------------------------------|
+| **Definition**           | Heart of a computer system                               | Heart of an embedded system                                |
+| **Architecture**         | Von Neumann (shared program & data memory)              | Harvard (separate program & data memory)                   |
+| **Integration**          | Only the processor; requires external components         | Processor + memory + I/O integrated on a single chip       |
+| **Hardware Requirement** | Needs more external components                           | Needs fewer external components                            |
+| **Cost**                 | Higher due to external parts                             | Lower as most components are built-in                      |
+| **Power Consumption**    | High (not suitable for battery-powered systems)          | Low (ideal for battery-powered systems)                    |
+| **Applications**         | Used in PCs, laptops                                     | Used in embedded systems like washing machines, MP3 players|
+| **Examples**             | Intel 8086, Pentium series                               | Intel 8051, ARM Cortex-M series                            |

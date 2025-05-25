@@ -1,3 +1,6 @@
+### 8.Develop an ALP to count the number of ones and zeros in two consecutive Memory locations
+
+
 ```bash
 	AREA mydata,data,READONLY
 	EXPORT __Vectors

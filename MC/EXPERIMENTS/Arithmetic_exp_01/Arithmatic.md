@@ -1,5 +1,5 @@
 ```bash
-	AREA mudata,data,readonly
+	AREA mydata,data,readonly
 		EXPORT __Vectors
 __Vectors
 	DCD 0x20000000

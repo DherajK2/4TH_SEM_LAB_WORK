@@ -14,7 +14,7 @@ This guide will walk you through the process of creating, building, and debuggin
 3. **Click on "New µVision Project"** from the dropdown menu
 
 
-![Screenshot](../screenshot_01.png)
+![Screenshot 1](screenshot_01.png)
 
 ### Step 2: Name Your Project
 1. **Enter project name** - Type any name for your project (e.g., "ARITHMETIC23")

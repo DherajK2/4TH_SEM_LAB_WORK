@@ -74,7 +74,7 @@ Yes.
 |---------------------|-------------------------------------------|-----------------------------------------------|
 | Instruction Set     | Small and simple                          | Large and complex                             |
 | Execution Speed     | Fast – often one instruction per cycle    | Slower – may take multiple cycles             |
-| Complexity          | Simpler hardware, complexity in software  | Complex hardware, simpler software            |
+| Complexity          | Simpler hardware, complexity in compiler(software)   | Complexity in processor(hardware), simpler software            |
 | Code Size           | Larger                                    | Smaller                                       |
 | Power Consumption   | Lower                                     | Higher                                        |
 | Example Processors  | ARM, MIPS, RISC-V                         | Intel x86, AMD                                |

@@ -1,3 +1,5 @@
+```bash
+
     AREA large, DATA, READONLY
     EXPORT __Vectors
 __Vectors
@@ -42,3 +44,4 @@ VALUE
 RESULT
     DCD 0x0
     END
+```

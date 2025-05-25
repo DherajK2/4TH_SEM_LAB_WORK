@@ -13,7 +13,8 @@ This guide will walk you through the process of creating, building, and debuggin
 2. **Navigate to Project menu** in the top navigation bar
 3. **Click on "New µVision Project"** from the dropdown menu
 
-![Step 1 - New Project](MC/Step_By_Guide_for_asm/screenshot_01.png)
+
+![Screenshot](../screenshot_01.png)
 
 ### Step 2: Name Your Project
 1. **Enter project name** - Type any name for your project (e.g., "ARITHMETIC23")

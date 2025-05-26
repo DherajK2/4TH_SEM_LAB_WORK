@@ -1,7 +1,3 @@
-# 🎓 ADA Viva Questions and Answers (2024-25)
-**Department of Computer Science & Engineering**  
-**The National Institute of Engineering, Mysuru**  
-
 ---
 
 ## 🔍 Introduction to ADA

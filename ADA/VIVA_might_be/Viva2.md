@@ -122,6 +122,50 @@ ADA is the study of algorithm efficiency in terms of time and space, helping in 
 
 ---
 
+
+## 🧠 Algorithmic Paradigms – Definitions
+
+### 🔵 Brute Force
+- **Definition**: Brute force tries **all possible solutions** and picks the correct one.
+- **Approach**: Simple, exhaustive search.
+- **Use Case**: Effective when input size is small.
+- **Example**: Linear search, generating all permutations.
+
+---
+
+### 🟢 Divide and Conquer
+- **Definition**: Divide the problem into **smaller independent subproblems**, solve them recursively, and combine the results.
+- **Approach**: Divide → Conquer → Combine.
+- **Use Case**: Efficient for problems like sorting and searching.
+- **Example**: Merge Sort, Quick Sort, Binary Search.
+
+---
+
+### 🟡 Greedy
+- **Definition**: At each step, choose the **locally optimal (best) choice** hoping it leads to a globally optimal solution.
+- **Approach**: No backtracking or revisiting decisions.
+- **Use Case**: When the problem satisfies the greedy-choice property.
+- **Example**: Dijkstra’s Algorithm, Prim’s Algorithm, Kruskal’s Algorithm, Huffman Coding.
+
+---
+
+### 🔴 Dynamic Programming (DP)
+- **Definition**: Solves problems by **breaking them into overlapping subproblems** and storing results to avoid recomputation.
+- **Approach**: Top-down (memoization) or bottom-up (tabulation).
+- **Use Case**: When the problem has **optimal substructure** and **overlapping subproblems**.
+- **Example**: 0/1 Knapsack, Fibonacci sequence, Floyd’s Algorithm.
+
+---
+
+### 🟣 Backtracking
+- **Definition**: Systematically searches for a solution by **trying and undoing decisions** if they lead to failure.
+- **Approach**: Recursive trial-and-error with pruning.
+- **Use Case**: Solving **constraint satisfaction problems**.
+- **Example**: N-Queens, Sudoku Solver, Subset Sum Problem.
+
+---
+
+
 ## 📘 Algorithm Paradigms: Explanation & Comparison
 
 ### What is Brute Force?

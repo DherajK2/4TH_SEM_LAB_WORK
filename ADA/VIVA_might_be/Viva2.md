@@ -146,7 +146,7 @@ ADA is the study of algorithm efficiency in terms of time and space, helping in 
 ---
 
 ### 🔴 Dynamic Programming (DP)
-- **Definition**: Solves problems by **breaking them into overlapping subproblems** and storing results to avoid recomputation.
+- **Definition**: Solves problems by **breaking them into overlapping subproblems** and storing results as in table format to avoid recomputation.
 - **Approach**: Top-down (memoization) or bottom-up (tabulation).
 - **Use Case**: When the problem has **optimal substructure** and **overlapping subproblems**.
 - **Example**: 0/1 Knapsack, Fibonacci sequence, Floyd’s Algorithm.

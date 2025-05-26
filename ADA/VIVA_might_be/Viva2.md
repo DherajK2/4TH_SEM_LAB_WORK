@@ -81,6 +81,7 @@ ADA is the study of algorithm efficiency in terms of time and space, helping in 
 - **Applications**:
   - Budget allocation
   - Cargo loading
+  - **Memory allocation**
 
 ### 6a. Floyd’s Algorithm (All-Pairs Shortest Path)
 - **Working**: Dynamic programming

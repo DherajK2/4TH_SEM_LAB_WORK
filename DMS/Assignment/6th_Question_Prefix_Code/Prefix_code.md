@@ -1,9 +1,4 @@
-# Experiential Learning Assignment  
-**Subject**: Discrete Mathematical Structures  
-**Topic**: Prefix Codes in Computer Science and Engineering  
-**Course**: Computer Science and Engineering  
 
----
 
 ## 6) Prefix Codes: Definition, Applications, and Design
 

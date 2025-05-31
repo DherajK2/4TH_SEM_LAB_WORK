@@ -97,3 +97,21 @@ Let `T(n)` be the total operations:
 
 1. Calculating in-degree:
 
+```bash
+T₁(n) = ∑(j=0 to n-1) ∑(i=0 to n-1) O(1) = n × n × O(1) = O(n²)
+
+```
+
+2. Processing vertices and updating in-degree:
+
+```bash
+T₂(n) = ∑(u=0 to n-1) ∑(v=0 to n-1) O(1) = n × n × O(1) = O(n²)
+
+```
+Total time:
+```bash
+T(n) = T₁(n) + T₂(n) = O(n²) + O(n²) = O(n²)
+
+```
+
+---

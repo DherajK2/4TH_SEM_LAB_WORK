@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int knapsack(int value[], int weight[], int k, int n, int dp[n+1][k+1]) {
+void knapsack(int value[], int weight[], int k, int n, int dp[n+1][k+1]) {
     // Fill dp array to calculate maximum profit
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j <= k; j++) {
@@ -17,11 +17,10 @@ int knapsack(int value[], int weight[], int k, int n, int dp[n+1][k+1]) {
             }
         }
     }
-    return dp[n][k]; // Return maximum profit
 }
 
 void printSelectedItems(int value[], int weight[], int n, int k, int dp[n+1][k+1]) {
-    printf("Items included are:\n");
+    printf("\n\nItems included are:\n");
     printf("Sl.no\tWeight\tProfit\n");
     int profit = 0;
     int count = 0;
@@ -59,8 +58,7 @@ int main() {
     int dp[n+1][k+1];
 
     // Call knapsack function to fill dp table
-    int maxProfit = knapsack(value, weight, k, n, dp);
-    printf("The largest value that can be obtained is: %d\n", maxProfit);
+    knapsack(value, weight, k, n, dp);
 
     // Print the selected items
     printSelectedItems(value, weight, n, k, dp);

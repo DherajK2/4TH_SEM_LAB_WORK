@@ -24,7 +24,7 @@ int min(int a, int b) {
 }
 
 int main() {
-    int w, n, e = 0, u, v, i, j;
+    int  n,   i, j;
 
     // Input number of vertices
     printf("Enter the number of vertices: ");
@@ -39,14 +39,14 @@ int main() {
         for (j = 1; j <= n; j++) {
             scanf("%d", &p[i][j]);
 
-            if (i != j && p[i][j] != 999) {
-                e++;
+            
+            
             }
         }
-    }
+    
 
     // Display the number of edges
-    printf("\nNumber of edges: %d\n", e);
+   
 
     // Display the initial matrix of input data
     printf("\nMatrix of input data:\n");

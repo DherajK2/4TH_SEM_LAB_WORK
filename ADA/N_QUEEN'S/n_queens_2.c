@@ -1,6 +1,5 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include<math.h>
 
 
 int a[30], count = 0; 

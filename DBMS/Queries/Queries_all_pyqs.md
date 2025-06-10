@@ -493,6 +493,16 @@ DELIMITER ;
 ---
 ## Question 11: SQL view Book Library
 
+Given Schema:
+- Book (BookID, Title, AuthorID, PublisherID, Price)
+- Author (AuthorID, Name)
+- Publisher (PublisherID, Name)
+- Customer (CustomerID, Name, Email)
+- Order (OrderID, CustomerID, Date)
+- OrderDetails (OrderID, BookID, Quantity)
+
+---
+
 ## write a SQL query to create a view named ‘BookDetails’ that combines information from the ‘Book’, ‘Author’, and ‘Publisher’ tables:
 ```sql
 CREATE VIEW BookDetails AS
